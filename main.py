@@ -6,10 +6,12 @@ config = configparser.ConfigParser()
 config.read('config.ini')
 
 Token = config.get('credential', 'token')
+Host = config.get('setting', 'host')
+Port = config.get('setting', 'port')
 
 app = Flask(__name__)
 
-@app.route('/wx', methods=['GET'])
+@app.route('/wx', methods=['GET', 'POST'])
 def handle():
     try:
         data = request.args
@@ -42,4 +44,4 @@ def handle():
 
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=80, debug=True)
+    app.run(host=Host, port=Port, debug=True)
