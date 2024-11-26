@@ -8,3 +8,6 @@ port=80
 
 [chatgpt]
 APIKey=
+
+[kimi]
+APIKey=
