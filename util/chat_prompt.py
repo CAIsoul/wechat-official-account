@@ -46,5 +46,6 @@ async def create_speech():
     response.stream_to_file(speech_file_path)
 
 
-# asyncio.run(create_speech())
-ask_question("Tell me a funny story.")
+
+if __name__ == '__main__':
+    ask_question("Tell me where is Scotland's capital.")
