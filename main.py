@@ -1,5 +1,6 @@
 from flask import Flask, request
 from datetime import datetime
+import util.chat_prompt as ai
 import xml.etree.ElementTree as ET
 import hashlib
 import configparser
@@ -87,7 +88,7 @@ def handlePostRequest(xmlData):
         from_user_name = from_user_name,
         create_time = current_time_seconds,
         msg_type = msg_type,
-        content = "Hello World"
+        content = ai.ask_question(content)
     )
 
     print(xml_string)

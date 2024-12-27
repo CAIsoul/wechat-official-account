@@ -19,17 +19,20 @@ def get_AI_client():
     
     return client
 
-def helloworld():
+def ask_question(content):
     client = get_AI_client()
     stream = client.chat.completions.create(
         model=AI_MODEL,
-        messages=[{"role": "user", "content": "What do you know about Fuding?"}],
+        messages=[{"role": "user", "content": content}],
         stream=True,
     )
 
+    result = ""
     for chunk in stream:
         if chunk.choices[0].delta.content is not None:
-            print(chunk.choices[0].delta.content, end="")
+            result += chunk.choices[0].delta.content
+    
+    return result
 
 
 async def create_speech():
@@ -44,4 +47,4 @@ async def create_speech():
 
 
 # asyncio.run(create_speech())
-helloworld()
+ask_question("Tell me a funny story.")
